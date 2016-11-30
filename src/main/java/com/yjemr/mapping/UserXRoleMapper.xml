@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjemr.dao.UserXRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.yjemr.pojo.UserXRoleKey" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <id column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, ROLE_ID, DEPT_CODE, WARD_CODE
+  </sql>
+  <select id="selectByAll" resultMap="BaseResultMap" parameterType="com.yjemr.pojo.UserXRoleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_x_role
+    where <![CDATA[ 1=1 ]]>
+    <if test="userId != null" >
+      and  USER_ID = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="roleId != null" >
+      and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    </if>
+    <if test="deptCode != null" >
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+    </if>
+    <if test="wardCode != null" >
+      and WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.yjemr.pojo.UserXRoleKey" >
+    delete from user_x_role
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjemr.pojo.UserXRoleKey" >
+    insert into user_x_role (USER_ID, ROLE_ID, DEPT_CODE, 
+      WARD_CODE)
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{wardCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjemr.pojo.UserXRoleKey" >
+    insert into user_x_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

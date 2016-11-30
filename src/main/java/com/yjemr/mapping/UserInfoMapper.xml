@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjemr.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yjemr.pojo.UserInfo" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="ENABLED" property="enabled" jdbcType="VARCHAR" />
+    <result column="EFF_TIME" property="effTime" jdbcType="VARCHAR" />
+    <result column="EXPI_TIME" property="expiTime" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+    <result column="DUTY_ID" property="dutyId" jdbcType="VARCHAR" />
+    <result column="DUTY_NAME" property="dutyName" jdbcType="VARCHAR" />
+    <result column="ADMIN_LEVELS" property="adminLevels" jdbcType="VARCHAR" />
+    <result column="ADMIN_LEVELS_CODE" property="adminLevelsCode" jdbcType="VARCHAR" />
+    <result column="PY" property="py" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, PASSWORD, ENABLED, EFF_TIME, EXPI_TIME, HOSPITAL_CODE, DUTY_ID, 
+    DUTY_NAME, ADMIN_LEVELS, ADMIN_LEVELS_CODE, PY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_info
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjemr.pojo.UserInfo" >
+    insert into user_info (USER_ID, USER_NAME, PASSWORD, 
+      ENABLED, EFF_TIME, EXPI_TIME, 
+      HOSPITAL_CODE, DUTY_ID, DUTY_NAME, 
+      ADMIN_LEVELS, ADMIN_LEVELS_CODE, PY
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=VARCHAR}, #{effTime,jdbcType=VARCHAR}, #{expiTime,jdbcType=VARCHAR}, 
+      #{hospitalCode,jdbcType=VARCHAR}, #{dutyId,jdbcType=VARCHAR}, #{dutyName,jdbcType=VARCHAR}, 
+      #{adminLevels,jdbcType=VARCHAR}, #{adminLevelsCode,jdbcType=VARCHAR}, #{py,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjemr.pojo.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
+      </if>
+      <if test="effTime != null" >
+        EFF_TIME,
+      </if>
+      <if test="expiTime != null" >
+        EXPI_TIME,
+      </if>
+      <if test="hospitalCode != null" >
+        HOSPITAL_CODE,
+      </if>
+      <if test="dutyId != null" >
+        DUTY_ID,
+      </if>
+      <if test="dutyName != null" >
+        DUTY_NAME,
+      </if>
+      <if test="adminLevels != null" >
+        ADMIN_LEVELS,
+      </if>
+      <if test="adminLevelsCode != null" >
+        ADMIN_LEVELS_CODE,
+      </if>
+      <if test="py != null" >
+        PY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="effTime != null" >
+        #{effTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expiTime != null" >
+        #{expiTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCode != null" >
+        #{hospitalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null" >
+        #{dutyId,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyName != null" >
+        #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLevels != null" >
+        #{adminLevels,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLevelsCode != null" >
+        #{adminLevelsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="py != null" >
+        #{py,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjemr.pojo.UserInfo" >
+    update user_info
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        ENABLED = #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="effTime != null" >
+        EFF_TIME = #{effTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expiTime != null" >
+        EXPI_TIME = #{expiTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCode != null" >
+        HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null" >
+        DUTY_ID = #{dutyId,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyName != null" >
+        DUTY_NAME = #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLevels != null" >
+        ADMIN_LEVELS = #{adminLevels,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLevelsCode != null" >
+        ADMIN_LEVELS_CODE = #{adminLevelsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="py != null" >
+        PY = #{py,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjemr.pojo.UserInfo" >
+    update user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=VARCHAR},
+      EFF_TIME = #{effTime,jdbcType=VARCHAR},
+      EXPI_TIME = #{expiTime,jdbcType=VARCHAR},
+      HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+      DUTY_ID = #{dutyId,jdbcType=VARCHAR},
+      DUTY_NAME = #{dutyName,jdbcType=VARCHAR},
+      ADMIN_LEVELS = #{adminLevels,jdbcType=VARCHAR},
+      ADMIN_LEVELS_CODE = #{adminLevelsCode,jdbcType=VARCHAR},
+      PY = #{py,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <select id="getUserInfoByAll" parameterType="com.yjemr.pojo.UserInfo" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where <![CDATA[ 1=1 ]]>
+    <if test="userId != null" >
+    	 and USER_ID = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="userName != null" >
+    	 and USER_NAME = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+    	 and PASSWORD = #{password,jdbcType=VARCHAR} 
+    </if>
+    <if test="enabled != null" >
+    	 and ENABLED = #{enabled,jdbcType=VARCHAR}
+    </if>
+    <if test="effTime != null" >
+    	 and EFF_TIME = #{effTime,jdbcType=VARCHAR}
+    </if>
+    <if test="expiTime != null" >
+    	 and EXPI_TIME = #{expiTime,jdbcType=VARCHAR}
+    </if>
+    <if test="hospitalCode != null" >
+    	 and HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dutyId != null" >
+    	 and DUTY_ID = #{dutyId,jdbcType=VARCHAR}
+    </if>
+    <if test="adminLevels != null" >
+    	 and ADMIN_LEVELS = #{adminLevels,jdbcType=VARCHAR}
+    </if>
+    <if test="dutyName != null" >
+    	 and DUTY_NAME = #{dutyName,jdbcType=VARCHAR}
+    </if>
+    <if test="adminLevelsCode != null" >
+    	 and ADMIN_LEVELS_CODE = #{adminLevelsCode,jdbcType=VARCHAR}
+    </if>
+    <if test="py != null" >
+    	 and PY = #{py,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
