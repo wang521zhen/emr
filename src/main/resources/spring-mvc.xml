@@ -20,13 +20,13 @@
 			</list>
 		</property>
 	</bean>
-	<!-- 访问拦截    
+	<!-- 访问拦截    -->
   	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**/*.do"/>
+			<mvc:mapping path="/**/*.do*"/>
 			<bean class="com.yjemr.interceptor.LoginHandlerInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors>-->
+	</mvc:interceptors>
 	<!-- 注解json格式的序列和反序列化 -->
 	<mvc:annotation-driven>  
 	    <mvc:message-converters>  

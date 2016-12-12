@@ -38,8 +38,9 @@ public class Login extends BaseController {
 	 * @param record
 	 * @return
 	 */
-	@RequestMapping(value = "/login_toLogin" , method = RequestMethod.POST)
+	@RequestMapping(value = "/login_toLogin")
 	public Response loginToLogin(){
+		System.out.println("/login_toLogin");
 		return this.getResponse().failure(Const.LOGIN);
 	}
 	
@@ -72,9 +73,12 @@ public class Login extends BaseController {
 				return this.getResponse().failure("没有相关功能权限，请联系管理员维护！");
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("UserInfo", userInfoNew);
-			map.put("UserPopedomList", userPNew);
-			map.put("UserXRoleKeyList", userXList);
+			map.put(Const.USER_INFO, userInfoNew);
+			map.put(Const.USER_POPEDOM_LIST, userPNew);
+			map.put(Const.USER_X_ROLE_LIST, userXList);
+			this.getRequest().getSession().setAttribute(Const.USER_INFO, userInfoNew);
+			this.getRequest().getSession().setAttribute(Const.USER_POPEDOM_LIST, userPNew);
+			this.getRequest().getSession().setAttribute(Const.USER_X_ROLE_LIST, userXList);
 			return this.getResponse().success(map);
 		}
 		return this.getResponse().failure();
