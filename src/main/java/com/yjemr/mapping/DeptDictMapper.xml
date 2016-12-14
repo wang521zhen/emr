@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjemr.dao.DeptDictMapper" >
+  <resultMap id="BaseResultMap" type="com.yjemr.pojo.DeptDict" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="DEPT_TYPE" property="deptType" jdbcType="VARCHAR" />
+    <result column="PARENT_DEPT_CODE" property="parentDeptCode" jdbcType="VARCHAR" />
+    <result column="PARENT_DEPT_NAME" property="parentDeptName" jdbcType="VARCHAR" />
+    <result column="ORDINAL" property="ordinal" jdbcType="INTEGER" />
+    <result column="AVAILABLE" property="available" jdbcType="VARCHAR" />
+    <result column="DEPT_TYPE_CODE" property="deptTypeCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, DEPT_NAME, DEPT_TYPE, PARENT_DEPT_CODE, PARENT_DEPT_NAME, ORDINAL, AVAILABLE, 
+    DEPT_TYPE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from DEPT_DICT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from DEPT_DICT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjemr.pojo.DeptDict" >
+    insert into DEPT_DICT (DEPT_CODE, DEPT_NAME, DEPT_TYPE, 
+      PARENT_DEPT_CODE, PARENT_DEPT_NAME, ORDINAL, 
+      AVAILABLE, DEPT_TYPE_CODE)
+    values (#{deptCode,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{deptType,jdbcType=VARCHAR}, 
+      #{parentDeptCode,jdbcType=VARCHAR}, #{parentDeptName,jdbcType=VARCHAR}, #{ordinal,jdbcType=INTEGER}, 
+      #{available,jdbcType=VARCHAR}, #{deptTypeCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjemr.pojo.DeptDict" >
+    insert into DEPT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="deptType != null" >
+        DEPT_TYPE,
+      </if>
+      <if test="parentDeptCode != null" >
+        PARENT_DEPT_CODE,
+      </if>
+      <if test="parentDeptName != null" >
+        PARENT_DEPT_NAME,
+      </if>
+      <if test="ordinal != null" >
+        ORDINAL,
+      </if>
+      <if test="available != null" >
+        AVAILABLE,
+      </if>
+      <if test="deptTypeCode != null" >
+        DEPT_TYPE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptType != null" >
+        #{deptType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeptCode != null" >
+        #{parentDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeptName != null" >
+        #{parentDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinal != null" >
+        #{ordinal,jdbcType=INTEGER},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTypeCode != null" >
+        #{deptTypeCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjemr.pojo.DeptDict" >
+    update DEPT_DICT
+    <set >
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptType != null" >
+        DEPT_TYPE = #{deptType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeptCode != null" >
+        PARENT_DEPT_CODE = #{parentDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentDeptName != null" >
+        PARENT_DEPT_NAME = #{parentDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinal != null" >
+        ORDINAL = #{ordinal,jdbcType=INTEGER},
+      </if>
+      <if test="available != null" >
+        AVAILABLE = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTypeCode != null" >
+        DEPT_TYPE_CODE = #{deptTypeCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjemr.pojo.DeptDict" >
+    update DEPT_DICT
+    set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      DEPT_TYPE = #{deptType,jdbcType=VARCHAR},
+      PARENT_DEPT_CODE = #{parentDeptCode,jdbcType=VARCHAR},
+      PARENT_DEPT_NAME = #{parentDeptName,jdbcType=VARCHAR},
+      ORDINAL = #{ordinal,jdbcType=INTEGER},
+      AVAILABLE = #{available,jdbcType=VARCHAR},
+      DEPT_TYPE_CODE = #{deptTypeCode,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>
